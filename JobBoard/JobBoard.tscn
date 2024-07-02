@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://cjt11w05ylamt"]
+
+[ext_resource type="Script" path="res://JobBoard/JobBoard.gd" id="1_qe7bn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xs6df"]
+albedo_color = Color(0.65098, 0, 0.65098, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rldyd"]
+material = SubResource("StandardMaterial3D_xs6df")
+size = Vector3(3, 2, 0.2)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_q4k15"]
+points = PackedVector3Array(1.5, 1, 0.1, 1.5, 1, -0.1, -1.5, 1, 0.1, 1.5, -1, 0.1, 1.5, -1, -0.1, -1.5, 1, -0.1, -1.5, -1, 0.1, -1.5, -1, -0.1)
+
+[node name="JobBoard" type="StaticBody3D"]
+script = ExtResource("1_qe7bn")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01609, 0)
+visible = false
+mesh = SubResource("BoxMesh_rldyd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01609, 0)
+shape = SubResource("ConvexPolygonShape3D_q4k15")
+
+[node name="Pins" type="Node3D" parent="."]
+
+[node name="Pin0" type="Marker3D" parent="Pins"]
+transform = Transform3D(-5.96046e-08, 0, -1, 0, 1, 0, 1, 0, -5.96046e-08, -0.960771, 1.38331, 0.143003)
+
+[node name="Pin1" type="Marker3D" parent="Pins"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.695343, 1.44704, 0.186473)
+
+[node name="Pin2" type="Marker3D" parent="Pins"]
+transform = Transform3D(-0.000401421, 0, -1, 0, 1, 0, 1, 0, -0.000401421, -0.960771, 0.500269, 0.160413)
+
+[node name="Pin3" type="Marker3D" parent="Pins"]
+transform = Transform3D(-0.0298232, 0, -0.999555, 0, 1, 0, 0.999555, 0, -0.0298232, 0.770672, 0.487725, 0.168288)
