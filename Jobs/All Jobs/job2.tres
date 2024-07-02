@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="JOB" load_steps=2 format=3 uid="uid://bl5ge5cjvwhcp"]
+
+[ext_resource type="Script" path="res://Jobs/job_class.gd" id="1_lpmol"]
+
+[resource]
+script = ExtResource("1_lpmol")
+title = "job2"
+message = "I need some help picking weeds! "
+picked_up_flag = false

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="JOB" load_steps=2 format=3 uid="uid://di2mcv3p215e8"]
+
+[ext_resource type="Script" path="res://Jobs/job_class.gd" id="1_a7tph"]
+
+[resource]
+script = ExtResource("1_a7tph")
+title = "job3"
+message = "Any monster hunters out there looking to make a quick buck? "
+picked_up_flag = false

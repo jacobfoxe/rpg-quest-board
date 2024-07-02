@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="JOB" load_steps=2 format=3 uid="uid://x0b2ct6t76db"]
+
+[ext_resource type="Script" path="res://Jobs/job_class.gd" id="1_klh0n"]
+
+[resource]
+script = ExtResource("1_klh0n")
+title = "job4"
+message = "Looking for a new friend onto whom I can offload some of this extra mayo. "
+picked_up_flag = false
