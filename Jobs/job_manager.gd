@@ -24,7 +24,24 @@ func get_all_jobs():
 
 #/
 ## Returns a random job resource from the list of jobs. 
-func get_random_job() -> JOB:
+func get_random_job(repeats_allowed : bool) -> JOB:
 	var rng : RandomNumberGenerator = RandomNumberGenerator.new()
 	rng.randomize()
-	return jobs[rng.randi()%(jobs.size())]
+	var foundJob : JOB = jobs[rng.randi()%(jobs.size())]
+	
+	## Check if the foundJob has been used already on a board ##
+	if foundJob.used == false:
+		## Not used; set it to used and return it ##
+		foundJob.used = true
+	else:
+		## Used already ##
+		if repeats_allowed == true:
+			## Repeats are allowed, so return the job ##
+			pass
+		else:
+			## Repeats are not allowed, so loop through random jobs until you find unused ones ##
+			while foundJob.used == true:
+				foundJob = jobs[rng.randi()%(jobs.size())]
+			foundJob.used = true
+			
+	return foundJob
