@@ -3,9 +3,8 @@
 [ext_resource type="Script" path="res://Jobs/JobFlyer.gd" id="1_rnnej"]
 [ext_resource type="FontFile" uid="uid://cacud08jwugy2" path="res://Fonts/digbuild.ttf" id="1_uywqv"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_mr8r0"]
-resource_local_to_scene = true
-size = Vector3(0.25, 0.245, 0.01)
+[sub_resource type="BoxMesh" id="BoxMesh_5cac8"]
+size = Vector3(0.3, 0.215, 0.005)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r5m1y"]
 transparency = 1
@@ -30,7 +29,7 @@ script = ExtResource("1_rnnej")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 0, 0, 0)
-mesh = SubResource("BoxMesh_mr8r0")
+mesh = SubResource("BoxMesh_5cac8")
 
 [node name="glow" type="MeshInstance3D" parent="MeshInstance3D"]
 visible = false
@@ -42,8 +41,7 @@ alpha_cut = 1
 alpha_antialiasing_mode = 2
 texture_filter = 0
 text = "this is still ugly as sin
-but what happens if I change this
-idk man"
+but what happens if I change this"
 font = ExtResource("1_uywqv")
 font_size = 16
 outline_size = 5

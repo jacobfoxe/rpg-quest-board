@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://bbd0cerx42eoi"]
+[gd_scene load_steps=8 format=3 uid="uid://bbd0cerx42eoi"]
 
+[ext_resource type="Script" path="res://Platform/Platform.gd" id="1_0lx6y"]
 [ext_resource type="PackedScene" uid="uid://cjt11w05ylamt" path="res://JobBoard/JobBoard.tscn" id="1_r61h8"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uv5vt"]
@@ -12,7 +13,16 @@ size = Vector2(10, 10)
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_s4ug8"]
 points = PackedVector3Array(-5, 0, -5, -5, 0, 5, 5, 0, -5, 5, 0, 5)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xs6df"]
+albedo_color = Color(0.65098, 0, 0.65098, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cwyd4"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_xs6df")
+size = Vector3(3, 2, 0.2)
+
 [node name="Platform" type="StaticBody3D"]
+script = ExtResource("1_0lx6y")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_o6bqy")
@@ -23,6 +33,9 @@ shape = SubResource("ConvexPolygonShape3D_s4ug8")
 [node name="JobBoard" parent="." instance=ExtResource("1_r61h8")]
 transform = Transform3D(-1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, -2, 0, 0)
 
+[node name="MeshInstance3D" parent="JobBoard" index="0"]
+mesh = SubResource("BoxMesh_cwyd4")
+
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-0.993413, 0, 0.11459, 0, 1, 0, -0.11459, 0, -0.993413, -1.8494, 1.08419, -2.12538)
 
@@ -31,5 +44,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.05056, 3.1433, -3.56472)
 light_color = Color(1, 1, 0.435294, 1)
 light_energy = 11.432
 omni_range = 482.818
+
+[connection signal="ready" from="JobBoard" to="." method="_on_job_board_ready"]
+[connection signal="tree_entered" from="JobBoard" to="." method="_on_job_board_tree_entered"]
 
 [editable path="JobBoard"]
