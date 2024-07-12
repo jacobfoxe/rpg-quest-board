@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://bbd0cerx42eoi"]
+[gd_scene load_steps=9 format=3 uid="uid://bbd0cerx42eoi"]
 
 [ext_resource type="Script" path="res://Platform/Platform.gd" id="1_0lx6y"]
 [ext_resource type="PackedScene" uid="uid://cjt11w05ylamt" path="res://JobBoard/JobBoard.tscn" id="1_r61h8"]
+[ext_resource type="PackedScene" uid="uid://c6hbr1x080htd" path="res://Player/player.tscn" id="3_3f4uv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uv5vt"]
 albedo_color = Color(0, 0.329412, 0, 1)
@@ -37,13 +38,16 @@ transform = Transform3D(-1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, -2, 0, 0
 mesh = SubResource("BoxMesh_cwyd4")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.993413, 0, 0.11459, 0, 1, 0, -0.11459, 0, -0.993413, -1.8494, 1.08419, -2.12538)
+transform = Transform3D(-0.993413, 0, 0.11459, 0, 1, 0, -0.11459, 0, -0.993413, -1.8494, 1.08419, -4.12538)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.05056, 3.1433, -3.56472)
 light_color = Color(1, 1, 0.435294, 1)
 light_energy = 11.432
 omni_range = 482.818
+
+[node name="Player" parent="." instance=ExtResource("3_3f4uv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, -1)
 
 [connection signal="ready" from="JobBoard" to="." method="_on_job_board_ready"]
 [connection signal="tree_entered" from="JobBoard" to="." method="_on_job_board_tree_entered"]
