@@ -1,3 +1,5 @@
+#/
+## 3D Node to handle a physical Job Flyer. 
 @tool
 class_name JOB_FLYER extends StaticBody3D
 
