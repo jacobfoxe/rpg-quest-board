@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://b2depuqm4y36b"]
+
+[node name="JobEntry" type="HBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Index" type="Label" parent="."]
+layout_mode = 2
+
+[node name="Contents" type="Label" parent="."]
+layout_mode = 2
