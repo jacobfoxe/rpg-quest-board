@@ -3,12 +3,15 @@
 class_name PLAYER extends CharacterBody3D
 
 signal interact	## Emitted when the player interacts. Handled by world objects. 
+signal job_menu(player)
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
 @onready var marker_3d = $Marker3D
+@onready var raycast_3d = $Marker3D/Camera3D/RayCast3D
 
+@export var playerName : String
 @export var jobList : JOB_LIST	## JOB_LIST Resource to contain all jobs the player has taken. 
 
 @export_group("Sensitivity")
@@ -36,7 +39,11 @@ func _input(event):
 	
 	## Handle interact button
 	if Input.is_action_just_pressed("interact"):
-		emit_signal("interact")
+		#emit_signal("interact")
+		_on_interact()
+	
+	if Input.is_action_just_pressed("job_list"):
+		_on_open_job_list()
 		
 func _physics_process(delta):
 	# Add the gravity.
@@ -59,3 +66,19 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+
+func getJobs() -> JOB_LIST:
+	return jobList
+	
+func _on_interact():
+	if raycast_3d.is_colliding():
+		var collider = raycast_3d.get_collider()
+		if collider.is_in_group("INTERACT"):
+			## Interactable; call interaction ##
+			collider.interact(self)
+
+
+func _on_open_job_list():
+	# TODO : arrest controls
+	emit_signal("job_menu", self)
+	pass

@@ -32,19 +32,7 @@ func _on_player_interact(body : PLAYER):
 	emit_signal("open_board", jobs)
 	print(str(body) + " interacted with me!")
 
-#/
-## Called when a body has entered.
-func _on_player_detection_body_entered(body):
-	## NOTE: Some of this logic could be moved to the PlayerDetection node, 
-	## and the check for the body type could be there. 
-	if body.is_in_group("PLAYER"):
-		print("Player Entered: " + str(body))
-		body.interact.connect(_on_player_interact.bind(body))
 
-#/
-## Called when a body has left.
-func _on_player_detection_body_exited(body):
-	## Check for the PLAYER group. Don't update if a player is already within the range. 
-	if body.is_in_group("PLAYER"):
-		print("Player Exited: "+ str(body))
-		body.interact.disconnect(_on_player_interact)
+func _on_player_detection_interacted_with(player : PLAYER):
+	print("This Player interacted with me: " + player.playerName)
+	## TODO: change camera and change controls to select jobs

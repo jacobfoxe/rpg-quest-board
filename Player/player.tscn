@@ -20,3 +20,14 @@ shape = SubResource("CapsuleShape3D_8h4so")
 [node name="Camera3D" type="Camera3D" parent="Marker3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.685914, 1.12401, 2.68587)
 current = true
+
+[node name="RayCast3D" type="RayCast3D" parent="Marker3D/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.510014, -0.454798, -2.70616)
+target_position = Vector3(0, 0, -1.5)
+hit_from_inside = true
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="Label3D" type="Label3D" parent="Marker3D/Camera3D/RayCast3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5)
+text = "Look!"

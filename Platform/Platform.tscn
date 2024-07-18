@@ -48,8 +48,11 @@ omni_range = 482.818
 
 [node name="Player" parent="." instance=ExtResource("3_3f4uv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, -1)
+playerName = "Jacob"
 
 [connection signal="ready" from="JobBoard" to="." method="_on_job_board_ready"]
 [connection signal="tree_entered" from="JobBoard" to="." method="_on_job_board_tree_entered"]
+[connection signal="job_menu" from="Player" to="." method="_on_player_job_menu_open"]
 
 [editable path="JobBoard"]
+[editable path="JobBoard/PlayerDetection"]

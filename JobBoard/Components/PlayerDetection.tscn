@@ -1,5 +1,8 @@
-[gd_scene format=3 uid="uid://b4u4txfjjf8sw"]
+[gd_scene load_steps=2 format=3 uid="uid://b4u4txfjjf8sw"]
 
-[node name="PlayerDetection" type="Area3D"]
+[ext_resource type="Script" path="res://JobBoard/Components/PlayerDetection.gd" id="1_jom1x"]
+
+[node name="PlayerDetection" type="Area3D" groups=["INTERACT"]]
+script = ExtResource("1_jom1x")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
