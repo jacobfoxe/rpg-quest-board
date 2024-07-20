@@ -1,7 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cjt11w05ylamt"]
+[gd_scene load_steps=6 format=3 uid="uid://cjt11w05ylamt"]
 
 [ext_resource type="Script" path="res://JobBoard/JobBoard.gd" id="1_qe7bn"]
-[ext_resource type="PackedScene" uid="uid://b4u4txfjjf8sw" path="res://JobBoard/Components/PlayerDetection.tscn" id="2_rfpfu"]
+[ext_resource type="PackedScene" uid="uid://cwuxdf87644yg" path="res://Components/InteractionHandler.tscn" id="2_waj5f"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xs6df"]
 albedo_color = Color(0.65098, 0, 0.65098, 1)
@@ -12,10 +12,6 @@ size = Vector3(3, 2, 0.2)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_q4k15"]
 points = PackedVector3Array(1.5, 1, 0.1, 1.5, 1, -0.1, -1.5, 1, 0.1, 1.5, -1, 0.1, 1.5, -1, -0.1, -1.5, 1, -0.1, -1.5, -1, 0.1, -1.5, -1, -0.1)
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mjlp1"]
-radius = 2.0
-height = 6.0
 
 [node name="JobBoard" type="StaticBody3D"]
 script = ExtResource("1_qe7bn")
@@ -42,12 +38,4 @@ transform = Transform3D(-0.000401421, 0, -1, 0, 1, 0, 1, 0, -0.000401421, -0.960
 [node name="Pin3" type="Marker3D" parent="Pins"]
 transform = Transform3D(-0.0298232, 0, -0.999555, 0, 1, 0, 0.999555, 0, -0.0298232, 0.770672, 0.487725, 0.168288)
 
-[node name="PlayerDetection" parent="." instance=ExtResource("2_rfpfu")]
-
-[node name="CollisionShape3D" parent="PlayerDetection" index="0"]
-transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_mjlp1")
-
-[connection signal="interacted_with" from="PlayerDetection" to="." method="_on_player_detection_interacted_with"]
-
-[editable path="PlayerDetection"]
+[node name="InteractionHandler" parent="." instance=ExtResource("2_waj5f")]
