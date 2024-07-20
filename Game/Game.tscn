@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://drg5ofs54toop"]
+
+[ext_resource type="PackedScene" uid="uid://bbd0cerx42eoi" path="res://Platform/Platform.tscn" id="1_iv6by"]
+[ext_resource type="Script" path="res://Game/Game.gd" id="1_s4omf"]
+[ext_resource type="PackedScene" uid="uid://y0dh7hvw1j4j" path="res://UI/Cursor.tscn" id="2_ayc3o"]
+[ext_resource type="PackedScene" uid="uid://c6hbr1x080htd" path="res://Player/player.tscn" id="4_fneas"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xs6df"]
+albedo_color = Color(0.65098, 0, 0.65098, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_y6hj8"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_xs6df")
+size = Vector3(3, 2, 0.2)
+
+[node name="Game" type="Node"]
+script = ExtResource("1_s4omf")
+
+[node name="Platform" parent="." instance=ExtResource("1_iv6by")]
+
+[node name="MeshInstance3D" parent="Platform/JobBoard" index="0"]
+mesh = SubResource("BoxMesh_y6hj8")
+
+[node name="Cursor" parent="." instance=ExtResource("2_ayc3o")]
+offset_left = -30.0
+offset_top = -5.0
+offset_right = 470.0
+offset_bottom = 495.0
+scale = Vector2(0.2, 0.2)
+
+[node name="Player" parent="." instance=ExtResource("4_fneas")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.47433, 1.3195, 0)
+
+[connection signal="board_focus_closed" from="Platform/JobBoard" to="." method="_on_board_released"]
+
+[editable path="Platform"]
+[editable path="Platform/JobBoard"]
+[editable path="Platform/JobBoard/FixedCamera"]
