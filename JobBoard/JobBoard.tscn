@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://JobBoard/JobBoard.gd" id="1_qe7bn"]
 [ext_resource type="PackedScene" uid="uid://cwuxdf87644yg" path="res://Components/InteractionHandler.tscn" id="2_waj5f"]
 [ext_resource type="PackedScene" uid="uid://j0c0of4o2twv" path="res://JobBoard/FixedCamera/FixedCamera.tscn" id="3_vrgdy"]
-[ext_resource type="Texture2D" uid="uid://bgn8j6xrdmcjs" path="res://Assets/Crystal_button_cancel.svg.png" id="3_wle1m"]
+[ext_resource type="Texture2D" uid="uid://djro0buv465sx" path="res://Assets/Crystal_button_cancel.svg.png" id="3_wle1m"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xs6df"]
 albedo_color = Color(0.65098, 0, 0.65098, 1)

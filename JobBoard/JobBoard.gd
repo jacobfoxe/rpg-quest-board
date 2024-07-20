@@ -1,3 +1,4 @@
+## Job Board 3D element w/ processing functionality. 
 class_name JobBoard extends StaticBody3D
 
 signal board_focus_closed
