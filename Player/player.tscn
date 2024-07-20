@@ -6,10 +6,11 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8h4so"]
 
-[node name="Player" type="CharacterBody3D" groups=["PLAYER"]]
+[node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_y8soe")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+layers = 4
 mesh = SubResource("CapsuleMesh_1ei3l")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -24,10 +25,11 @@ current = true
 [node name="RayCast3D" type="RayCast3D" parent="Marker3D/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.510014, -0.454798, -2.70616)
 target_position = Vector3(0, 0, -1.5)
+collision_mask = 2
 hit_from_inside = true
 collide_with_areas = true
-collide_with_bodies = false
 
 [node name="Label3D" type="Label3D" parent="Marker3D/Camera3D/RayCast3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5)
+layers = 4
 text = "Look!"

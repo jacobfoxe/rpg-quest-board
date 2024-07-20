@@ -1,23 +1,25 @@
-extends StaticBody3D
+class_name JobBoard extends StaticBody3D
 
+signal board_focus_closed
 signal open_board(job_list)
 
 const flyerNode = preload("res://Jobs/JobFlyer.tscn")
-@onready var pins : Array[Marker3D] = [$Pins/Pin0, $Pins/Pin1, $Pins/Pin2, $Pins/Pin3]
+@onready var pins : Array[Node] = $Pins.get_children()
+@onready var cancel_area: Area3D = $Area3D
 
 var jobs : Array[JOB] = []	## List of jobs on this board. 
 
 func _ready():
 	populate_job_board()
+	cancel_area.visible = false
+	cancel_area.monitoring = false
 
-#/
 ## Fill out the Job Board with flyers.
 func populate_job_board():
 	## Loop through pins and create a flyer for each. 
 	for pin in pins:
 		create_job_flyer(JOB_MANAGER.get_random_job(false), pin)
 
-#/
 ## Instantiate a new flyer and populate it with a job. 
 func create_job_flyer(job : JOB, pin : Marker3D):
 	var newFlyer : JOB_FLYER = flyerNode.instantiate()
@@ -26,13 +28,14 @@ func create_job_flyer(job : JOB, pin : Marker3D):
 	jobs.push_back(job)
 	print("Job Created: " + job.title + " on pin: " + pin.name)
 
-#/
-## Connected to activePlayer signal for interaction. 
-func _on_player_interact(body : PLAYER):
-	emit_signal("open_board", jobs)
-	print(str(body) + " interacted with me!")
+func _on_interacted():
+	cancel_area.visible = true
+	cancel_area.monitoring = true
 
-
-func _on_player_detection_interacted_with(player : PLAYER):
-	print("This Player interacted with me: " + player.playerName)
-	## TODO: change camera and change controls to select jobs
+## Called when the cancel button is pressed. 
+func _on_cancel_tex_input_event(camera: Node, event: InputEvent, position: Vector3, normal: Vector3, shape_idx: int) -> void:
+	if event is InputEventMouseButton:
+		print("Cancel Pressed")
+		emit_signal("board_focus_closed")
+		cancel_area.visible = false
+		cancel_area.monitoring = false

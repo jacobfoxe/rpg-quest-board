@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://j0c0of4o2twv"]
+
+[ext_resource type="Script" path="res://JobBoard/FixedCamera/FixedCamera.gd" id="1_s3ul4"]
+
+[node name="FixedCamera" type="Node3D"]
+script = ExtResource("1_s3ul4")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+cull_mask = 1048571

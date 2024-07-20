@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cjt11w05ylamt"]
+[gd_scene load_steps=9 format=3 uid="uid://cjt11w05ylamt"]
 
 [ext_resource type="Script" path="res://JobBoard/JobBoard.gd" id="1_qe7bn"]
 [ext_resource type="PackedScene" uid="uid://cwuxdf87644yg" path="res://Components/InteractionHandler.tscn" id="2_waj5f"]
+[ext_resource type="PackedScene" uid="uid://j0c0of4o2twv" path="res://JobBoard/FixedCamera/FixedCamera.tscn" id="3_vrgdy"]
+[ext_resource type="Texture2D" uid="uid://bgn8j6xrdmcjs" path="res://Assets/Crystal_button_cancel.svg.png" id="3_wle1m"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xs6df"]
 albedo_color = Color(0.65098, 0, 0.65098, 1)
@@ -13,7 +15,11 @@ size = Vector3(3, 2, 0.2)
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_q4k15"]
 points = PackedVector3Array(1.5, 1, 0.1, 1.5, 1, -0.1, -1.5, 1, 0.1, 1.5, -1, 0.1, 1.5, -1, -0.1, -1.5, 1, -0.1, -1.5, -1, 0.1, -1.5, -1, -0.1)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_ajuhd"]
+size = Vector3(20, 20, 4)
+
 [node name="JobBoard" type="StaticBody3D"]
+collision_layer = 7
 script = ExtResource("1_qe7bn")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -27,15 +33,33 @@ shape = SubResource("ConvexPolygonShape3D_q4k15")
 [node name="Pins" type="Node3D" parent="."]
 
 [node name="Pin0" type="Marker3D" parent="Pins"]
-transform = Transform3D(-5.96046e-08, 0, -1, 0, 1, 0, 1, 0, -5.96046e-08, -0.960771, 1.38331, 0.143003)
+transform = Transform3D(-5.96046e-08, 0, -1, 0, 1, 0, 1, 0, -5.96046e-08, -0.7, 1.5, 0.16)
 
 [node name="Pin1" type="Marker3D" parent="Pins"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.695343, 1.44704, 0.186473)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.7, 1.5, 0.16)
 
 [node name="Pin2" type="Marker3D" parent="Pins"]
-transform = Transform3D(-0.000401421, 0, -1, 0, 1, 0, 1, 0, -0.000401421, -0.960771, 0.500269, 0.160413)
+transform = Transform3D(-0.000401421, 0, -1, 0, 1, 0, 1, 0, -0.000401421, -0.7, 0.5, 0.16)
 
 [node name="Pin3" type="Marker3D" parent="Pins"]
-transform = Transform3D(-0.0298232, 0, -0.999555, 0, 1, 0, 0.999555, 0, -0.0298232, 0.770672, 0.487725, 0.168288)
+transform = Transform3D(-0.0298232, 0, -0.999555, 0, 1, 0, 0.999555, 0, -0.0298232, 0.7, 0.5, 0.16)
 
 [node name="InteractionHandler" parent="." instance=ExtResource("2_waj5f")]
+
+[node name="FixedCamera" parent="." instance=ExtResource("3_vrgdy")]
+
+[node name="Camera3D" parent="FixedCamera" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2.45471)
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(0.015, 0, 0, 0, 0.015, 0, 0, 0, 0.015, 1.3161, 1.83601, 0.152378)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_ajuhd")
+
+[node name="CancelTexture" type="Sprite3D" parent="Area3D"]
+texture = ExtResource("3_wle1m")
+
+[connection signal="input_event" from="Area3D" to="." method="_on_cancel_tex_input_event"]
+
+[editable path="FixedCamera"]

@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" path="res://Platform/Platform.gd" id="1_0lx6y"]
 [ext_resource type="PackedScene" uid="uid://cjt11w05ylamt" path="res://JobBoard/JobBoard.tscn" id="1_r61h8"]
-[ext_resource type="PackedScene" uid="uid://c6hbr1x080htd" path="res://Player/player.tscn" id="3_3f4uv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uv5vt"]
 albedo_color = Color(0, 0.329412, 0, 1)
@@ -22,6 +21,8 @@ resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_xs6df")
 size = Vector3(3, 2, 0.2)
 
+[sub_resource type="Environment" id="Environment_50o7t"]
+
 [node name="Platform" type="StaticBody3D"]
 script = ExtResource("1_0lx6y")
 
@@ -37,22 +38,17 @@ transform = Transform3D(-1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, -2, 0, 0
 [node name="MeshInstance3D" parent="JobBoard" index="0"]
 mesh = SubResource("BoxMesh_cwyd4")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.993413, 0, 0.11459, 0, 1, 0, -0.11459, 0, -0.993413, -1.8494, 1.08419, -4.12538)
-
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.05056, 3.1433, -3.56472)
 light_color = Color(1, 1, 0.435294, 1)
 light_energy = 11.432
 omni_range = 482.818
 
-[node name="Player" parent="." instance=ExtResource("3_3f4uv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, -1)
-playerName = "Jacob"
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_50o7t")
 
 [connection signal="ready" from="JobBoard" to="." method="_on_job_board_ready"]
 [connection signal="tree_entered" from="JobBoard" to="." method="_on_job_board_tree_entered"]
-[connection signal="job_menu" from="Player" to="." method="_on_player_job_menu_open"]
 
 [editable path="JobBoard"]
-[editable path="JobBoard/PlayerDetection"]
+[editable path="JobBoard/FixedCamera"]
