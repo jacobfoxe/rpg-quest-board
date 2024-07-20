@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://y0dh7hvw1j4j"]
+
+[ext_resource type="Texture2D" uid="uid://crxrgf0vjayub" path="res://Assets/cursor.png" id="1_4tyuk"]
+[ext_resource type="Script" path="res://UI/Cursor.gd" id="2_w0ufr"]
+
+[node name="Cursor" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 1
+script = ExtResource("2_w0ufr")
+
+[node name="CursorTex" type="TextureRect" parent="."]
+offset_left = -150.0
+offset_top = -25.0
+offset_right = 350.0
+offset_bottom = 475.0
+texture = ExtResource("1_4tyuk")
