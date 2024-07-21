@@ -34,7 +34,7 @@ func _on_interacted():
 	cancel_area.monitoring = true
 
 ## Called when the cancel button is pressed. 
-func _on_cancel_tex_input_event(camera: Node, event: InputEvent, position: Vector3, normal: Vector3, shape_idx: int) -> void:
+func _on_cancel_tex_input_event(_camera: Node, event: InputEvent, _position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	if event is InputEventMouseButton:
 		print("Cancel Pressed")
 		emit_signal("board_focus_closed")
